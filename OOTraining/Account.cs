@@ -13,31 +13,20 @@ namespace OOTraining
         private bool IsVerified { get; set; }
         private bool IsClosed { get; set; }
         
-        private Action OnUnfreeze { get; }
-        private Action ManagedUnfreezing { get; set; }
+        private IFreezable Freezable { get; set; }
 
         public Account(Action onUnfreeze)
         {
-            this.OnUnfreeze = onUnfreeze;
-
-            this.ManagedUnfreezing = this.StayUnfrozen;
+            this.Freezable = new Active(onUnfreeze);
         }
         
         public void Deposit(decimal amount)
         {
             if (this.IsClosed)
                 return;
-            this.ManagedUnfreezing();
+            this.Freezable = this.Freezable.Deposit();
             this.Balance += amount;
         }
-
-        private void Unfreeze()
-        {
-            this.OnUnfreeze();
-            this.ManagedUnfreezing = this.StayUnfrozen;
-        }
-
-        private void StayUnfrozen() { }
 
         public void Withdraw(decimal amount)
         {
@@ -45,7 +34,7 @@ namespace OOTraining
                 return;
             if (this.IsClosed)
                 return;
-            ManagedUnfreezing();
+            this.Freezable = this.Freezable.Withdraw();
             this.Balance -= amount;
 
         }
@@ -66,7 +55,7 @@ namespace OOTraining
                 return;
             if (!this.IsVerified)
                 return;
-            this.ManagedUnfreezing = this.Unfreeze;
+            this.Freezable = this.Freezable.Freeze();
         }
     }
 }
