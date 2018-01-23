@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOTraining
 {
-    class Active : IFreezable
+    class Active : IAccountState
     {
         private Action OnUnfreeze { get; }
 
@@ -15,13 +15,28 @@ namespace OOTraining
             this.OnUnfreeze = onUnfreeze;
         }
 
-        public IFreezable Deposit() => this;
+        public IAccountState Deposit(Action addToBalance)
+        {
+            addToBalance();
+            return this;
+        }
 
-        public IFreezable Withdraw() => this;
+        public IAccountState Withdraw(Action substractFromBalance)
+        {
+            substractFromBalance();
+            return this;
+        }
 
-        public IFreezable Freeze()
+        public IAccountState Freeze()
         {
             return new Frozen(this.OnUnfreeze);
         }
+
+        public IAccountState Close()
+        {
+            return new Closed();
+        }
+
+        public IAccountState HolderVerified() => this;
     }
 }

@@ -6,34 +6,39 @@ using System.Threading.Tasks;
 
 namespace OOTraining
 {
-    class Frozen : IAccountState 
+    class NotVerified : IAccountState
     {
         private Action OnUnfreeze { get; }
 
-        public Frozen(Action onUnfreeze)
+        public NotVerified(Action onUnfreeze)
         {
             this.OnUnfreeze = onUnfreeze;
         }
 
+        public IAccountState Close()
+        {
+            return new Closed();
+        }
+
+        public IAccountState Freeze()
+        {
+            return this;
+        }
+
         public IAccountState Deposit(Action addToBalance)
         {
-            this.OnUnfreeze();
             addToBalance();
-            return new Active(this.OnUnfreeze);
+            return this;
         }
 
         public IAccountState Withdraw(Action substractFromBalance)
         {
-            this.OnUnfreeze();
-            substractFromBalance();
-            return new Active(this.OnUnfreeze);
+            return this; 
         }
 
-        public IAccountState Freeze() => this;
-
-        public IAccountState Close() => new Closed();
-
-        public IAccountState HolderVerified() => this;
-            
+        public IAccountState HolderVerified()
+        {
+            return new Active(this.OnUnfreeze);
+        }
     }
 }
