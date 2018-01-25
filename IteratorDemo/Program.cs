@@ -11,19 +11,10 @@ namespace IteratorDemo
         private static IPainter FindCheapestPainter(double sqMeters,
                                                     IEnumerable<IPainter> painters)
         {
-            double bestPrice = 0;
-            IPainter cheapest = null;
-
-            foreach (IPainter painter in painters)
-            {
-                if (painter.IsAvailable)
-                {
-                    double price = painter.EstimateCompensation(sqMeters);
-                    if (cheapest == null || price < bestPrice)
-                        cheapest = painter;
-                }
-            }
-            return cheapest;
+            return
+                painters
+                    .Where(painter => painter.IsAvailable)
+                    .WithMinimum(painter => painter.EstimateCompensation(sqMeters));
         }
         static void Main(string[] args)
         {
