@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AvoidBranching", "OOTraining\AvoidBranching.csproj", "{4D746C4D-EA15-43B5-8D62-AB593FE0288C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorDemo", "IteratorDemo\IteratorDemo.csproj", "{BEBF68EA-F8DA-4775-91D8-9134715CDE81}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialCaseDemo", "SpecialCaseDemo\SpecialCaseDemo.csproj", "{247F462F-70CD-4363-B380-E3B95F8136EF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{BEBF68EA-F8DA-4775-91D8-9134715CDE81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEBF68EA-F8DA-4775-91D8-9134715CDE81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEBF68EA-F8DA-4775-91D8-9134715CDE81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{247F462F-70CD-4363-B380-E3B95F8136EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{247F462F-70CD-4363-B380-E3B95F8136EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{247F462F-70CD-4363-B380-E3B95F8136EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{247F462F-70CD-4363-B380-E3B95F8136EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
