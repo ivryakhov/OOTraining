@@ -8,13 +8,18 @@ namespace SpecialCaseDemo
 {
     class SoldArticle
     {
-        public Warranty MoneyBackGuarantee { get; }
-        public Warranty ExpressWarranty { get; }
+        public IWarranty MoneyBackGuarantee { get; }
+        public IWarranty ExpressWarranty { get; }
 
-        public SolidArticle(Warranty moneyBack, Warranty express)
+        public SoldArticle(IWarranty moneyBack, IWarranty express)
         {
+            if (moneyBack == null)
+                throw new ArgumentNullException(nameof(moneyBack));
+            if (express == null)
+                throw new ArgumentNullException(nameof(express));
+
             this.MoneyBackGuarantee = moneyBack;
-            this.ExpressWarranty = express;
+            this.ExpressWarranty = express; 
         }
     }
 }
