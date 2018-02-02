@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpecialCaseDemo
 {
@@ -12,15 +8,11 @@ namespace SpecialCaseDemo
         {
             DateTime now = DateTime.Now;
 
-            if (article.MoneyBackGuarantee.IsValidOn(now))
-            {
-                Console.WriteLine("Offer money back.");
-            }
-
-            if (article.ExpressWarranty.IsValidOn(now))
-            {
-                Console.WriteLine("Offer repair.");
-            }
+            article.MoneyBackGuarantee.Claim(now, () =>
+                Console.WriteLine("Offer money back."));
+            
+            article.ExpressWarranty.Claim(now, () =>
+                Console.WriteLine("Offer repair."));
         }
 
         static void Main(string[] args)
@@ -33,9 +25,10 @@ namespace SpecialCaseDemo
                 new TimeLimitedWarranty(sellingDate, moneyBackSpan);
 
             IWarranty warranty =
-                new TimeLimitedWarranty(sellingDate, warrantySpan);
+                new LifeTimeWarranty(sellingDate);
 
-            SoldArticle goods = new SoldArticle(VoidWarranty.Instance, warranty);
+            SoldArticle goods =
+                new SoldArticle(VoidWarranty.Instance, warranty);
 
             ClaimWarranty(goods);
 

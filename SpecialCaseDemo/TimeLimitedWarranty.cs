@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpecialCaseDemo
 {
@@ -18,9 +14,15 @@ namespace SpecialCaseDemo
             this.Duration = TimeSpan.FromDays(duration.Days);
         }
 
-        public bool IsValidOn(DateTime date) =>
+        public void Claim(DateTime onDate, Action onValidClaim)
+        {
+            if (!this.IsValidOn(onDate))
+                return;
+            onValidClaim();
+        }
+
+        private bool IsValidOn(DateTime date) =>
             date.Date >= this.DateIssued 
             && date.Date < this.DateIssued + this.Duration;
     }
-}
- 
+} 

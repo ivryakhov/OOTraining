@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpecialCaseDemo
 {
     class SoldArticle
     {
-        public IWarranty MoneyBackGuarantee { get; }
-        public IWarranty ExpressWarranty { get; }
+        public IWarranty MoneyBackGuarantee { get; private set;  }
+        public IWarranty ExpressWarranty { get; private set; }
+        private IWarranty NotOperationalWarranty { get; }
 
         public SoldArticle(IWarranty moneyBack, IWarranty express)
         {
@@ -19,7 +16,19 @@ namespace SpecialCaseDemo
                 throw new ArgumentNullException(nameof(express));
 
             this.MoneyBackGuarantee = moneyBack;
-            this.ExpressWarranty = express; 
+            this.ExpressWarranty = VoidWarranty.Instance;
+            this.NotOperationalWarranty = express;
+        }
+
+        public void VisibleDamage()
+        {
+            this.MoneyBackGuarantee = VoidWarranty.Instance;
+        }
+
+        public void NotOperational()
+        {
+            this.MoneyBackGuarantee = VoidWarranty.Instance;
+            this.ExpressWarranty = this.NotOperationalWarranty;
         }
     }
 }

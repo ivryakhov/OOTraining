@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpecialCaseDemo
 {
@@ -23,6 +19,6 @@ namespace SpecialCaseDemo
             }
         }
 
-        public bool IsValidOn(DateTime date) => false;
+        public void Claim(DateTime onDate, Action onValidClaim) { }
     }
 }
