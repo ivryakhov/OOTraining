@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IteratorDemo", "IteratorDem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialCaseDemo", "SpecialCaseDemo\SpecialCaseDemo.csproj", "{247F462F-70CD-4363-B380-E3B95F8136EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutofacSamples", "AutofacSamples\AutofacSamples.csproj", "{B363E4E6-8C32-4287-8E94-D52FCD2F6BA7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{247F462F-70CD-4363-B380-E3B95F8136EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{247F462F-70CD-4363-B380-E3B95F8136EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{247F462F-70CD-4363-B380-E3B95F8136EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B363E4E6-8C32-4287-8E94-D52FCD2F6BA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B363E4E6-8C32-4287-8E94-D52FCD2F6BA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B363E4E6-8C32-4287-8E94-D52FCD2F6BA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B363E4E6-8C32-4287-8E94-D52FCD2F6BA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
