@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,7 @@ namespace AutofacSamples
 
     public class Engine
     {
+        // comment
         private ILog log;
         private int id;
 
@@ -45,7 +47,8 @@ namespace AutofacSamples
             this.engine = engine;
             this.log = log;
         }
-
+         
+        //comment
         public void Go()
         {
             engine.Ahead(100);
@@ -57,9 +60,14 @@ namespace AutofacSamples
     {
         static void Main(string[] args)
         {
-            var log = new ConsoleLog();
-            var engine = new Engine(log);
-            var car = new Car(engine, log);
+            var builder = new ContainerBuilder();
+            builder.RegisterType<ConsoleLog>().As<ILog>();
+            builder.RegisterType<Engine>();
+            builder.RegisterType<Car>();
+
+            IContainer container = builder.Build();
+
+            var car = container.Resolve<Car>();
             car.Go();
         }
     }
